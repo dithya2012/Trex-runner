@@ -101,46 +101,14 @@ function draw(){
         }
         
     }
-    if(gamestate=="play2"){
-        trex.changeAnimation("run");
-        ground.velocityX=-(5+score/30);
-        
-        if(ground.x<0){
-            ground.x=ground.width/2
-        }
-       if(obstGroup.VelocityXEach==90 && trex.y>140 ){
-        trex.velocityY=-9;
-        jumpSound.play();
-
-
-       }
- 
-        
-        if (trex.isTouching(obstGroup) ){
-            gamestate = "end"
-            dieSound.play();
-        }
-        clouds();
-        cactus();
-        gameOver.visible=false;
-        restart.visible=false;
-        if(frameCount%3 == 0 ){
-            score=score+1;
-        }
-        // % is called modulo or modulus, it gives you the remainder between two numbers.
-        if(score%50 == 0   && score != 0){
-            cpSound.play();
-
-        }
-        
-    }
+    
     if(gamestate == "end"){
         trex.changeAnimation("stop");
         ground.velocityX=0;
         obstGroup.setVelocityXEach(0);
         cloudGroup.setVelocityXEach(0);
         if(mousePressedOver(restart)){
-            gamestate="play2";
+            gamestate="play";
             cloudGroup.destroyEach();
             obstGroup.destroyEach();
             score=0;
